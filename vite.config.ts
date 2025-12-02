@@ -7,14 +7,17 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   // 1. Definición de Hosts y Rutas
-  const remotesHost = env.VITE_REMOTES_HOST ?? "http://192.168.1.8";
-  
-  // NOTA: Elimina 'dist/' de las rutas. El servidor ya apunta a la raíz de dist.
-  // Asegúrate de que tus remotes generan el archivo con este nombre exacto.
+  const remotesHost = env.VITE_REMOTES_HOST ?? "http://localhost";
+
   const catalogPath = env.VITE_REMOTE_PATH_CATALOG ?? "assets/mfEntry.js"; 
   const checkoutPath = env.VITE_REMOTE_PATH_CHECKOUT ?? "assets/remoteEntry.js";
   const analyticsPath = env.VITE_REMOTE_PATH_ANALYTICS ?? "assets/remoteEntry.js";
   const profilePath = env.VITE_REMOTE_PATH_PROFILE ?? "assets/remoteEntry.js";
+
+  const catalogUrl = env.VITE_REMOTE_CATALOG_URL;
+  const checkoutUrl = env.VITE_REMOTE_CHECKOUT_URL;
+  const analyticsUrl = env.VITE_REMOTE_ANALYTICS_URL;
+  const profileUrl = env.VITE_REMOTE_PROFILE_URL;
 
   // Función helper para construir la URL completa
   const remoteUrl = (port: number, path: string) => `${remotesHost}:${port}/${path}`;
@@ -26,10 +29,10 @@ export default defineConfig(({ mode }) => {
         name: "app-shell",
         // El App Shell consume remotes, aquí se definen:
         remotes: {
-          catalog: remoteUrl(5001, catalogPath),
-          checkout: remoteUrl(5002, checkoutPath),
-          analytics: remoteUrl(5003, analyticsPath),
-          profile: remoteUrl(5004, profilePath),
+          catalog: catalogUrl ?? remoteUrl(8080, catalogPath),
+          checkout: checkoutUrl ?? remoteUrl(5002, checkoutPath),
+          analytics: analyticsUrl ?? remoteUrl(5003, analyticsPath),
+          profile: profileUrl ?? remoteUrl(5004, profilePath),
         },
         shared: {
           react: { 
@@ -75,27 +78,29 @@ export default defineConfig(({ mode }) => {
       }),
     ],
     // Configuración del servidor local (Host)
-    server: {
-      port: 5173,
-      host: "0.0.0.0",
-      cors: {
-        origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        allowedHeaders: ["*"],
-      },
+  server: {
+    port: 5173,
+    host: "0.0.0.0",
+    allowedHosts: true,
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["*"],
+    },
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       },
     },
-    preview: {
-      port: 4173,
-      host: "0.0.0.0",
-      cors: {
-        origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        allowedHeaders: ["*"],
+  preview: {
+    port: 4173,
+    host: "0.0.0.0",
+    allowedHosts: ["mf-appshell-pwa-production.up.railway.app", ".railway.app"],
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["*"],
       },
       headers: {
         "Access-Control-Allow-Origin": "*",
