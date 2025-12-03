@@ -13,12 +13,18 @@ export default defineConfig(({ mode }) => {
   const agentPath = env.VITE_REMOTE_PATH_AGENT ?? "assets/mfEntry.js";
   const nfcPath = env.VITE_REMOTE_PATH_NFC ?? "assets/mfEntry.js";
 
-  const catalogUrl = env.VITE_REMOTE_CATALOG_URL;
-  const agentUrl = env.VITE_REMOTE_AGENT_URL;
-  const nfcUrl = env.VITE_REMOTE_NFC_URL;
+  const ensureProtocol = (value?: string) => {
+    if (!value) return value;
+    return /^https?:\/\//.test(value) ? value : `https://${value}`;
+  };
+
+  const catalogUrl = ensureProtocol(env.VITE_REMOTE_CATALOG_URL);
+  const agentUrl = ensureProtocol(env.VITE_REMOTE_AGENT_URL);
+  const nfcUrl = ensureProtocol(env.VITE_REMOTE_NFC_URL);
 
   // Función helper para construir la URL completa
-  const remoteUrl = (port: number, path: string) => `${remotesHost}:${port}/${path}`;
+  const remoteUrl = (port: number, path: string) =>
+    `${ensureProtocol(remotesHost)}:${port}/${path}`;
 
   return {
     plugins: [
