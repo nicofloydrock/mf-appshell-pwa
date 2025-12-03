@@ -10,14 +10,10 @@ export default defineConfig(({ mode }) => {
   const remotesHost = env.VITE_REMOTES_HOST ?? "http://localhost";
 
   const catalogPath = env.VITE_REMOTE_PATH_CATALOG ?? "assets/mfEntry.js"; 
-  const checkoutPath = env.VITE_REMOTE_PATH_CHECKOUT ?? "assets/remoteEntry.js";
-  const analyticsPath = env.VITE_REMOTE_PATH_ANALYTICS ?? "assets/remoteEntry.js";
-  const profilePath = env.VITE_REMOTE_PATH_PROFILE ?? "assets/remoteEntry.js";
+  const agentPath = env.VITE_REMOTE_PATH_AGENT ?? "assets/mfEntry.js";
 
   const catalogUrl = env.VITE_REMOTE_CATALOG_URL;
-  const checkoutUrl = env.VITE_REMOTE_CHECKOUT_URL;
-  const analyticsUrl = env.VITE_REMOTE_ANALYTICS_URL;
-  const profileUrl = env.VITE_REMOTE_PROFILE_URL;
+  const agentUrl = env.VITE_REMOTE_AGENT_URL;
 
   // Función helper para construir la URL completa
   const remoteUrl = (port: number, path: string) => `${remotesHost}:${port}/${path}`;
@@ -30,9 +26,7 @@ export default defineConfig(({ mode }) => {
         // El App Shell consume remotes, aquí se definen:
         remotes: {
           catalog: catalogUrl ?? remoteUrl(8080, catalogPath),
-          checkout: checkoutUrl ?? remoteUrl(5002, checkoutPath),
-          analytics: analyticsUrl ?? remoteUrl(5003, analyticsPath),
-          profile: profileUrl ?? remoteUrl(5004, profilePath),
+          agente: agentUrl ?? remoteUrl(5005, agentPath),
         },
         shared: {
           react: { 

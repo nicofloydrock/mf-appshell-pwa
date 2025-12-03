@@ -3,9 +3,7 @@ import { registerSW } from "virtual:pwa-register";
 
 const remoteLoaders = {
   catalog: () => import("catalog/App"),
-  checkout: () => import("checkout/App"),
-  analytics: () => import("analytics/Dashboard"),
-  profile: () => import("profile/App"),
+  agente: () => import("agente/App"),
 };
 
 type Microfront = {
@@ -27,28 +25,12 @@ const microfronts: Microfront[] = [
     accent: "from-sky-400 to-blue-600",
   },
   {
-    id: "checkout",
-    name: "Checkout",
-    description: "Flujo de pago, carrito y confirmación.",
-    remote: "checkout",
+    id: "agente",
+    name: "Agente",
+    description: "Chat de operador con traducción en vivo.",
+    remote: "agente",
     module: "App",
-    accent: "from-amber-400 to-orange-500",
-  },
-  {
-    id: "analytics",
-    name: "Analytics",
-    description: "Panel de métricas y funnels clave.",
-    remote: "analytics",
-    module: "Dashboard",
-    accent: "from-emerald-400 to-teal-500",
-  },
-  {
-    id: "profile",
-    name: "Perfil",
-    description: "Sección de cuenta, roles y preferencias.",
-    remote: "profile",
-    module: "App",
-    accent: "from-pink-400 to-fuchsia-500",
+    accent: "from-emerald-400 to-cyan-500",
   },
 ];
 
@@ -188,7 +170,7 @@ export default function App() {
         >
           <div className="flex items-center justify-between pb-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">
-              Menú (4 microfronts)
+              Menú (2 microfronts)
             </p>
             <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
               Module Federation
