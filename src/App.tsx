@@ -113,6 +113,9 @@ export default function App() {
   const [pwaStatus, setPwaStatus] = useState<PwaStatus>("idle");
   const updateSWRef =
     useRef<null | ((reloadPage?: boolean) => Promise<void>)>(null);
+  const [swVersion, setSwVersion] = useState<number>(() =>
+    Math.floor(Date.now() / 1000),
+  );
 
   useEffect(() => {
     const updateSW = registerSW({
@@ -222,6 +225,16 @@ export default function App() {
               <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-100">
                 module: {active.module}
               </span>
+              <button
+                className="rounded-lg border border-emerald-400/50 bg-emerald-500/15 px-3 py-1 text-[11px] font-semibold text-emerald-100 transition hover:-translate-y-0.5 hover:border-emerald-300/80"
+                onClick={() => {
+                  setPwaStatus("update");
+                  setSwVersion(Math.floor(Date.now() / 1000));
+                  updateSWRef.current?.(true);
+                }}
+              >
+                Refrescar PWA
+              </button>
             </div>
           </div>
 
