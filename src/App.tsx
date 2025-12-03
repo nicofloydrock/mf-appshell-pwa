@@ -6,49 +6,8 @@ import { ShellHeader } from "./components/shell/ShellHeader";
 import { PwaBanner } from "./components/shell/PwaBanner";
 import { useNotifications } from "./hooks/useNotifications";
 import { AppConfig } from "./config/appConfig";
-import type { Microfront, RemoteKey } from "./types/microfront";
-
-const remoteLoaders: Record<RemoteKey, () => Promise<unknown>> = {
-  catalog: () => import("catalog/App"),
-  agente: () => import("agente/App"),
-  nfc: () => import("nfc/App"),
-  notificaciones: () => import("notificaciones/App"),
-};
-
-const microfronts: Microfront[] = [
-  {
-    id: "catalog",
-    name: "Catálogo",
-    description: "Listado principal de productos y colecciones.",
-    remote: "catalog",
-    module: "App",
-    accent: "from-sky-400 to-blue-600",
-  },
-  {
-    id: "agente",
-    name: "Agente",
-    description: "Chat de operador con traducción en vivo.",
-    remote: "agente",
-    module: "App",
-    accent: "from-emerald-400 to-cyan-500",
-  },
-  {
-    id: "nfc",
-    name: "Lector NFC",
-    description: "Lee tags NFC (solo dispositivos compatibles).",
-    remote: "nfc",
-    module: "App",
-    accent: "from-amber-400 to-lime-500",
-  },
-  {
-    id: "notificaciones",
-    name: "Notificaciones",
-    description: "Suscripción y envío de push de prueba.",
-    remote: "notificaciones",
-    module: "App",
-    accent: "from-indigo-400 to-purple-500",
-  },
-];
+import { microfronts, remoteLoaders } from "./constants/microfronts";
+import type { Microfront } from "./types/microfront";
 
 export default function App() {
   const initial = (() => {

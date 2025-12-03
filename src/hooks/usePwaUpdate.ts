@@ -11,6 +11,7 @@ export function usePwaUpdate() {
     useRef<null | ((reloadPage?: boolean) => Promise<void>)>(null);
 
   useEffect(() => {
+    // Registra SW y expone callbacks de refresh/offline.
     const updateSW = registerSW({
       onOfflineReady: () => setStatus("offline"),
       onNeedRefresh: () => setStatus("update"),
