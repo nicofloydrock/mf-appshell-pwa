@@ -32,14 +32,6 @@ const microfronts: Microfront[] = [
     module: "App",
     accent: "from-emerald-400 to-cyan-500",
   },
-  {
-    id: "pwa-test",
-    name: "PWA Refresh",
-    description: "Menú para probar actualización del SW sin reinstalar.",
-    remote: "catalog",
-    module: "App",
-    accent: "from-slate-400 to-slate-600",
-  },
 ];
 
 type PwaStatus = "idle" | "offline" | "update";
@@ -181,7 +173,7 @@ export default function App() {
         >
           <div className="flex items-center justify-between pb-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">
-              Menú (3 microfronts)
+              Menú (2 microfronts)
             </p>
             <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
               Module Federation
