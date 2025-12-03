@@ -26,7 +26,7 @@ export default function App() {
     <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-10">
       <ShellHeader onToggleMenu={() => setMenuOpen((v) => !v)} menuOpen={menuOpen} />
 
-      <div className="mx-auto mt-6 flex max-w-6xl flex-col gap-4 lg:flex-row">
+      <div className="mx-auto mt-6 flex w-full max-w-7xl flex-col gap-4 lg:flex-row lg:items-start">
         <Sidebar
           microfronts={microfronts}
           active={active}
@@ -37,7 +37,7 @@ export default function App() {
           menuOpen={menuOpen}
         />
 
-        <main className="glass flex-1 rounded-2xl p-5 shadow-lg">
+        <main className="glass w-full flex-1 rounded-2xl p-5 shadow-lg">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-widest text-slate-400">
