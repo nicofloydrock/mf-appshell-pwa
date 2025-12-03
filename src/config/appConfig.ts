@@ -1,5 +1,6 @@
 export class AppConfig {
   user = { id: "operator-1", name: "Operador Demo" };
+  token = "NICORIVERA";
 
   async notify(message: string) {
     if ("Notification" in window) {
