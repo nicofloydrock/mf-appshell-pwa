@@ -12,6 +12,7 @@ const remoteLoaders: Record<RemoteKey, () => Promise<unknown>> = {
   catalog: () => import("catalog/App"),
   agente: () => import("agente/App"),
   nfc: () => import("nfc/App"),
+  notificaciones: () => import("notificaciones/App"),
 };
 
 const microfronts: Microfront[] = [
@@ -38,6 +39,14 @@ const microfronts: Microfront[] = [
     remote: "nfc",
     module: "App",
     accent: "from-amber-400 to-lime-500",
+  },
+  {
+    id: "notificaciones",
+    name: "Notificaciones",
+    description: "Suscripción y envío de push de prueba.",
+    remote: "notificaciones",
+    module: "App",
+    accent: "from-indigo-400 to-purple-500",
   },
 ];
 
