@@ -42,7 +42,12 @@ const microfronts: Microfront[] = [
 ];
 
 export default function App() {
-  const [active, setActive] = useState<Microfront>(microfronts[0]);
+  const initial = (() => {
+    const param = new URLSearchParams(window.location.search).get("remote");
+    const found = microfronts.find((m) => m.id === param);
+    return found ?? microfronts[0];
+  })();
+  const [active, setActive] = useState<Microfront>(initial);
   const [menuOpen, setMenuOpen] = useState(false);
   const { status: pwaStatus, refresh: refreshPwa, dismiss, forcingRefresh } =
     usePwaUpdate();
