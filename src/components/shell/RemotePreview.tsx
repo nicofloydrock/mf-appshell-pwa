@@ -67,7 +67,7 @@ export function RemotePreview({ moduleName, loader, config }: Props) {
 
   return (
     <div className="grid h-64 place-items-center rounded-2xl border border-white/10 bg-white/5 text-sm text-slate-200">
-      <p>Selecciona un microfront para montarlo aquí.</p>
+      <p>Selecciona un microfront para montarlo aquí Nico Alarcon.</p>
     </div>
   );
 }
