@@ -4,6 +4,7 @@ import { RemotePreview } from "./components/shell/RemotePreview";
 import { Sidebar } from "./components/shell/Sidebar";
 import { ShellHeader } from "./components/shell/ShellHeader";
 import { PwaBanner } from "./components/shell/PwaBanner";
+import { useNotifications } from "./hooks/useNotifications";
 import type { Microfront, RemoteKey } from "./types/microfront";
 
 const remoteLoaders: Record<RemoteKey, () => Promise<unknown>> = {
@@ -35,6 +36,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { status: pwaStatus, refresh: refreshPwa, dismiss, forcingRefresh } =
     usePwaUpdate();
+  const { send: sendNotification } = useNotifications();
 
   return (
     <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-10">
@@ -75,6 +77,17 @@ export default function App() {
                 onClick={() => refreshPwa()}
               >
                 {forcingRefresh ? "Actualizando..." : "Refrescar PWA"}
+              </button>
+              <button
+                className="rounded-lg border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/40"
+                onClick={() =>
+                  sendNotification(
+                    "Notificación de prueba",
+                    "Mensaje enviado desde el AppShell",
+                  )
+                }
+              >
+                Probar notificación
               </button>
             </div>
           </div>

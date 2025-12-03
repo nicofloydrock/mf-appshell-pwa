@@ -41,17 +41,20 @@ export default defineConfig(({ mode }) => {
           },
         },
       }),
-      VitePWA({
-        registerType: "autoUpdate",
-        includeAssets: ["icons/pwa-192.png", "icons/pwa-512.png"],
-        devOptions: {
-          enabled: true, // habilita SW en dev para probar instalación en localhost
-        },
-        workbox: {
-          clientsClaim: true,
-          skipWaiting: true,
-          cleanupOutdatedCaches: true,
-        },
+    VitePWA({
+      strategies: "injectManifest",
+      srcDir: "src",
+      filename: "sw.ts",
+      registerType: "autoUpdate",
+      includeAssets: ["icons/pwa-192.png", "icons/pwa-512.png"],
+      devOptions: {
+        enabled: true, // habilita SW en dev para probar instalación en localhost
+      },
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+        cleanupOutdatedCaches: true,
+      },
         manifest: {
           name: "App Shell MF",
           short_name: "AppShell",
