@@ -47,6 +47,10 @@ export default defineConfig(({ mode }) => {
         devOptions: {
           enabled: true, // habilita SW en dev para probar instalación en localhost
         },
+        workbox: {
+          clientsClaim: true,
+          skipWaiting: true,
+        },
         manifest: {
           name: "App Shell MF",
           short_name: "AppShell",

@@ -238,7 +238,11 @@ export default function App() {
                 onClick={() => {
                   setPwaStatus("update");
                   setSwVersion(Math.floor(Date.now() / 1000));
-                  updateSWRef.current?.(true);
+                  if (updateSWRef.current) {
+                    updateSWRef.current(true);
+                  } else {
+                    window.location.reload();
+                  }
                 }}
               >
                 Refrescar PWA
