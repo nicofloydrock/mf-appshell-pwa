@@ -1,4 +1,4 @@
-export type RemoteKey = "catalog" | "agente";
+export type RemoteKey = "catalog" | "agente" | "nfc";
 
 export type Microfront = {
   id: string;

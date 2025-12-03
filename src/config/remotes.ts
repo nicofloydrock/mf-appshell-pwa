@@ -15,7 +15,7 @@ const agentPath =
 
 const catalogUrl =
   normalize(import.meta.env.VITE_REMOTE_CATALOG_URL) ||
-  `${host}:8080/${catalogPath}`;
+  `${host}:5001/${catalogPath}`;
 const agentUrl =
   normalize(import.meta.env.VITE_REMOTE_AGENT_URL) ||
   `${host}:5005/${agentPath}`;

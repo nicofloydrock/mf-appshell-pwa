@@ -11,9 +11,11 @@ export default defineConfig(({ mode }) => {
 
   const catalogPath = env.VITE_REMOTE_PATH_CATALOG ?? "assets/mfEntry.js"; 
   const agentPath = env.VITE_REMOTE_PATH_AGENT ?? "assets/mfEntry.js";
+  const nfcPath = env.VITE_REMOTE_PATH_NFC ?? "assets/mfEntry.js";
 
   const catalogUrl = env.VITE_REMOTE_CATALOG_URL;
   const agentUrl = env.VITE_REMOTE_AGENT_URL;
+  const nfcUrl = env.VITE_REMOTE_NFC_URL;
 
   // Función helper para construir la URL completa
   const remoteUrl = (port: number, path: string) => `${remotesHost}:${port}/${path}`;
@@ -25,8 +27,9 @@ export default defineConfig(({ mode }) => {
         name: "app-shell",
         // El App Shell consume remotes, aquí se definen:
         remotes: {
-          catalog: catalogUrl ?? remoteUrl(8080, catalogPath),
+          catalog: catalogUrl ?? remoteUrl(5001, catalogPath),
           agente: agentUrl ?? remoteUrl(5005, agentPath),
+          nfc: nfcUrl ?? remoteUrl(5006, nfcPath),
         },
         shared: {
           react: { 

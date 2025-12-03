@@ -11,6 +11,7 @@ import type { Microfront, RemoteKey } from "./types/microfront";
 const remoteLoaders: Record<RemoteKey, () => Promise<unknown>> = {
   catalog: () => import("catalog/App"),
   agente: () => import("agente/App"),
+  nfc: () => import("nfc/App"),
 };
 
 const microfronts: Microfront[] = [
@@ -29,6 +30,14 @@ const microfronts: Microfront[] = [
     remote: "agente",
     module: "App",
     accent: "from-emerald-400 to-cyan-500",
+  },
+  {
+    id: "nfc",
+    name: "Lector NFC",
+    description: "Lee tags NFC (solo dispositivos compatibles).",
+    remote: "nfc",
+    module: "App",
+    accent: "from-amber-400 to-lime-500",
   },
 ];
 
