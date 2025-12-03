@@ -3,9 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 type Props = {
   moduleName: string;
   loader: () => Promise<unknown>;
+  config?: unknown;
 };
 
-export function RemotePreview({ moduleName, loader }: Props) {
+export function RemotePreview({ moduleName, loader, config }: Props) {
   const memoizedLoader = useMemo(() => loader, [loader]);
   const [Component, setComponent] = useState<React.ComponentType | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -59,7 +60,7 @@ export function RemotePreview({ moduleName, loader }: Props) {
   if (Component) {
     return (
       <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
-        <Component />
+        <Component config={config} />
       </div>
     );
   }

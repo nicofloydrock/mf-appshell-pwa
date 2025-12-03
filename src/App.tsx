@@ -5,6 +5,7 @@ import { Sidebar } from "./components/shell/Sidebar";
 import { ShellHeader } from "./components/shell/ShellHeader";
 import { PwaBanner } from "./components/shell/PwaBanner";
 import { useNotifications } from "./hooks/useNotifications";
+import { AppConfig } from "./config/appConfig";
 import type { Microfront, RemoteKey } from "./types/microfront";
 
 const remoteLoaders: Record<RemoteKey, () => Promise<unknown>> = {
@@ -37,6 +38,7 @@ export default function App() {
   const { status: pwaStatus, refresh: refreshPwa, dismiss, forcingRefresh } =
     usePwaUpdate();
   const { send: sendNotification } = useNotifications();
+  const configRef = useState(() => new AppConfig())[0];
 
   return (
     <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-10">
@@ -97,6 +99,7 @@ export default function App() {
               <RemotePreview
                 moduleName={active.module}
                 loader={remoteLoaders[active.remote]}
+                config={configRef}
               />
             </div>
             <div className="glass h-full rounded-2xl border border-white/10 p-4">
