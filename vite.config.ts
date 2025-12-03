@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => {
         workbox: {
           clientsClaim: true,
           skipWaiting: true,
+          cleanupOutdatedCaches: true,
         },
         manifest: {
           name: "App Shell MF",

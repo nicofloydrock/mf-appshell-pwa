@@ -32,6 +32,14 @@ const microfronts: Microfront[] = [
     module: "App",
     accent: "from-emerald-400 to-cyan-500",
   },
+  {
+    id: "pwa-test",
+    name: "PWA Refresh",
+    description: "Menú para probar actualización del SW sin reinstalar.",
+    remote: "catalog",
+    module: "App",
+    accent: "from-slate-400 to-slate-600",
+  },
 ];
 
 type PwaStatus = "idle" | "offline" | "update";
@@ -116,6 +124,7 @@ export default function App() {
   const [swVersion, setSwVersion] = useState<number>(() =>
     Math.floor(Date.now() / 1000),
   );
+  const [forcingRefresh, setForcingRefresh] = useState(false);
 
   useEffect(() => {
     const updateSW = registerSW({
@@ -173,7 +182,7 @@ export default function App() {
         >
           <div className="flex items-center justify-between pb-3">
             <p className="text-xs uppercase tracking-widest text-slate-400">
-              Menú (2 microfronts)
+              Menú (3 microfronts)
             </p>
             <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
               Module Federation
@@ -226,18 +235,29 @@ export default function App() {
                 module: {active.module}
               </span>
               <button
-                className="rounded-lg border border-emerald-400/50 bg-emerald-500/15 px-3 py-1 text-[11px] font-semibold text-emerald-100 transition hover:-translate-y-0.5 hover:border-emerald-300/80"
-                onClick={() => {
+                className="rounded-lg border border-emerald-400/50 bg-emerald-500/15 px-3 py-1 text-[11px] font-semibold text-emerald-100 transition hover:-translate-y-0.5 hover:border-emerald-300/80 disabled:opacity-60"
+                disabled={forcingRefresh}
+                onClick={async () => {
                   setPwaStatus("update");
                   setSwVersion(Math.floor(Date.now() / 1000));
-                  if (updateSWRef.current) {
-                    updateSWRef.current(true);
-                  } else {
-                    window.location.reload();
+                  setForcingRefresh(true);
+                  try {
+                    if (updateSWRef.current) {
+                      await updateSWRef.current(true);
+                    }
+                    const reg = await navigator.serviceWorker.getRegistration();
+                    await reg?.update();
+                  } catch (e) {
+                    console.warn("SW manual refresh failed", e);
+                  } finally {
+                    setForcingRefresh(false);
+                    const url = new URL(window.location.href);
+                    url.searchParams.set("pwa_ts", Date.now().toString());
+                    window.location.replace(url.toString());
                   }
                 }}
               >
-                Refrescar PWA
+                {forcingRefresh ? "Actualizando..." : "Refrescar PWA"}
               </button>
             </div>
           </div>
