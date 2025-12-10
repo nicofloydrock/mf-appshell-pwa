@@ -1,15 +1,24 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import { listenForRemoteRebuilds } from "@antdevx/vite-plugin-hmr-sync";
 import { moduleFederationConfig } from "./module.federation.config";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
+  const allowedApps = ["catalog", "agente", "nfc", "notificaciones"];
 
   return {
     plugins: [
       react(),
-      moduleFederationConfig(env),
+      moduleFederationConfig(env, mode),
+      // Escucha rebuilds de remotos y fuerza reload para mantener host sincronizado en dev.
+      listenForRemoteRebuilds({
+        allowedApps,
+        endpoint: "/on-child-rebuild",
+        hotPayload: { type: "full-reload", path: "*" },
+        onRebuild: (app) => console.log(`[AppShell] reload triggered by ${app}`),
+      }),
       VitePWA({
         strategies: "injectManifest",
         srcDir: "src",

@@ -8,13 +8,14 @@ const ensureProtocol = (value?: string) => {
   return /^https?:\/\//.test(value) ? value : `https://${value}`;
 };
 
-export function moduleFederationConfig(env: Env): PluginOption {
+export function moduleFederationConfig(env: Env, mode = "development"): PluginOption {
   const remotesHost = env.VITE_REMOTES_HOST ?? "http://localhost";
+  const defaultMfPath = mode === "development" ? "mfEntry.js" : "assets/mfEntry.js";
 
-  const catalogPath = env.VITE_REMOTE_PATH_CATALOG ?? "assets/mfEntry.js";
-  const agentPath = env.VITE_REMOTE_PATH_AGENT ?? "assets/mfEntry.js";
-  const nfcPath = env.VITE_REMOTE_PATH_NFC ?? "assets/mfEntry.js";
-  const notifPath = env.VITE_REMOTE_PATH_NOTIF ?? "assets/mfEntry.js";
+  const catalogPath = env.VITE_REMOTE_PATH_CATALOG ?? defaultMfPath;
+  const agentPath = env.VITE_REMOTE_PATH_AGENT ?? defaultMfPath;
+  const nfcPath = env.VITE_REMOTE_PATH_NFC ?? defaultMfPath;
+  const notifPath = env.VITE_REMOTE_PATH_NOTIF ?? defaultMfPath;
 
   const catalogUrl = ensureProtocol(env.VITE_REMOTE_CATALOG_URL);
   const agentUrl = ensureProtocol(env.VITE_REMOTE_AGENT_URL);
