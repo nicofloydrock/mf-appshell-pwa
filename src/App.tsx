@@ -33,7 +33,7 @@ export default function App() {
             onClick={() => setMenuOpen(false)}
             aria-hidden
           />
-          <div className="fixed inset-x-0 top-24 z-30 flex justify-center px-3 lg:left-6 lg:right-auto lg:w-72 lg:justify-start lg:px-0">
+          <div className="fixed inset-x-0 top-24 z-30 flex justify-center px-3 lg:left-auto lg:right-6 lg:w-72 lg:justify-end lg:px-0">
             <Sidebar
               microfronts={microfronts}
               active={active}
