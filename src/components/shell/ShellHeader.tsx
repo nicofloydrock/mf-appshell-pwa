@@ -24,10 +24,14 @@ export function ShellHeader({ onToggleMenu, menuOpen }: Props) {
           <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_6px_rgba(16,185,129,0.25)]" />
           Host listo para federación
         </div>
-        <button className="sm:hidden" onClick={onToggleMenu} aria-label="Abrir menú">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-white">
-            {menuOpen ? "✕" : "☰"}
-          </div>
+        <button
+          className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-white transition hover:-translate-y-0.5 hover:bg-white/15"
+          onClick={onToggleMenu}
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
+          type="button"
+        >
+          {menuOpen ? "✕" : "☰"}
         </button>
       </div>
     </header>

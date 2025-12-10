@@ -4,16 +4,11 @@ type Props = {
   microfronts: Microfront[];
   active: Microfront;
   onSelect: (mf: Microfront) => void;
-  menuOpen: boolean;
 };
 
-export function Sidebar({ microfronts, active, onSelect, menuOpen }: Props) {
+export function Sidebar({ microfronts, active, onSelect }: Props) {
   return (
-    <nav
-      className={`glass z-10 rounded-2xl p-4 shadow-lg transition-all sm:block ${
-        menuOpen ? "block" : "hidden sm:block"
-      } lg:w-72`}
-    >
+    <nav className="glass w-full max-w-md rounded-2xl p-4 shadow-lg lg:w-64 lg:flex-shrink-0">
       <div className="flex items-center justify-between pb-3">
         <p className="text-xs uppercase tracking-widest text-slate-400">
           Menú ({microfronts.length} microfronts)

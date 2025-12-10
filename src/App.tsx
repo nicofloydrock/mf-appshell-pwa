@@ -23,21 +23,31 @@ export default function App() {
   const configRef = useState(() => new AppConfig())[0];
 
   return (
-    <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-10">
+    <div className="min-h-screen px-3 py-6 sm:px-4 lg:px-6">
       <ShellHeader onToggleMenu={() => setMenuOpen((v) => !v)} menuOpen={menuOpen} />
 
-      <div className="mx-auto mt-6 flex w-full max-w-7xl flex-col gap-4 lg:flex-row lg:items-start">
-        <Sidebar
-          microfronts={microfronts}
-          active={active}
-          onSelect={(mf) => {
-            setActive(mf);
-            setMenuOpen(false);
-          }}
-          menuOpen={menuOpen}
-        />
+      {menuOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-20 bg-slate-900/40 backdrop-blur-sm lg:bg-slate-900/30"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden
+          />
+          <div className="fixed inset-x-0 top-24 z-30 flex justify-center px-3 lg:left-6 lg:right-auto lg:w-72 lg:justify-start lg:px-0">
+            <Sidebar
+              microfronts={microfronts}
+              active={active}
+              onSelect={(mf) => {
+                setActive(mf);
+                setMenuOpen(false);
+              }}
+            />
+          </div>
+        </>
+      )}
 
-        <main className="glass w-full flex-1 rounded-2xl p-5 shadow-lg">
+      <div className="mx-auto mt-6 flex w-full max-w-7xl flex-col gap-4 lg:flex-row lg:items-start">
+        <main className="glass w-full flex-1 rounded-2xl p-5 shadow-lg lg:min-w-0">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs uppercase tracking-widest text-slate-400">
