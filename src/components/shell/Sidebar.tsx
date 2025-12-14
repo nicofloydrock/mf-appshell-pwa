@@ -4,17 +4,21 @@ type Props = {
   microfronts: Microfront[];
   active: Microfront;
   onSelect: (mf: Microfront) => void;
+  copy: {
+    title: string;
+    tag: string;
+  };
 };
 
-export function Sidebar({ microfronts, active, onSelect }: Props) {
+export function Sidebar({ microfronts, active, onSelect, copy }: Props) {
   return (
     <nav className="glass w-full max-w-md rounded-2xl p-4 shadow-lg lg:w-64 lg:flex-shrink-0">
       <div className="flex items-center justify-between pb-3">
         <p className="text-xs uppercase tracking-widest text-slate-400">
-          Menú ({microfronts.length} microfronts)
+          {copy.title} ({microfronts.length} microfronts)
         </p>
         <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-200">
-          Module Federation
+          {copy.tag}
         </span>
       </div>
       <div className="space-y-3">

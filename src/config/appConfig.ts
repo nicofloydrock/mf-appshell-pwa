@@ -1,6 +1,9 @@
+import { buildAuthContext } from "./authConfig";
+
 export class AppConfig {
   user = { id: "operator-1", name: "Operador Demo" };
   token = "NICORIVERA";
+  auth = buildAuthContext(this.token, this.user);
 
   async notify(
     message: string,

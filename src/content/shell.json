@@ -1,0 +1,43 @@
+{
+  "header": {
+    "code": "AS",
+    "subtitle": "App Shell",
+    "title": "Microfrontends React 18 + Vite",
+    "status": "Host listo para federación"
+  },
+  "menu": {
+    "title": "Menú",
+    "tag": "Module Federation"
+  },
+  "hero": {
+    "activeLabel": "Microfront activo",
+    "remoteLabel": "remote",
+    "moduleLabel": "module",
+    "refreshingLabel": "Actualizando...",
+    "pwaCta": "Refrescar PWA",
+    "notifyCta": "Probar notificación",
+    "guideTitle": "Estado y guía",
+    "guideItems": [
+      "Vite + React 18 consumiendo remotes vía Module Federation.",
+      "PWA: usa “Refrescar PWA” para tomar la última versión.",
+      "Ajusta URLs en src/config/remotes.ts o variables VITE."
+    ]
+  },
+  "remotePreview": {
+    "loading": "Cargando microfront...",
+    "missingExport": "Export no encontrado",
+    "placeholder": "Selecciona un microfront para montarlo aquí."
+  },
+  "notifications": {
+    "title": "Notificación de prueba",
+    "message": "Mensaje enviado desde el AppShell"
+  },
+  "pwaBanner": {
+    "offlineTitle": "Listo para uso offline",
+    "offlineMessage": "Puedes seguir usando la app sin conexión.",
+    "updateTitle": "Nueva versión disponible",
+    "updateMessage": "Actualiza para cargar la última versión.",
+    "updateCta": "Actualizar",
+    "dismissCta": "Cerrar"
+  }
+}
