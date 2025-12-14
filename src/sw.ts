@@ -1,8 +1,6 @@
 // Service Worker injectManifest: precache, cleanup, skipWaiting y manejo de notificaciones/push del host.
 /// <reference lib="webworker" />
-// eslint-disable-next-line no-restricted-globals
 import { clientsClaim } from "workbox-core";
-// eslint-disable-next-line no-restricted-globals
 import { cleanupOutdatedCaches, precacheAndRoute } from "workbox-precaching";
 
 declare let self: ServiceWorkerGlobalScope & {
@@ -45,7 +43,7 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const target = (event.notification.data as any)?.target;
+  const target = (event.notification.data as { target?: string } | undefined)?.target;
   const url = target ? `/?remote=${target}` : "/";
   event.waitUntil(
     (async () => {

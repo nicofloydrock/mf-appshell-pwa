@@ -16,6 +16,7 @@ export function RemotePreview({ moduleName, loader, config, copy }: Props) {
   const [Component, setComponent] = useState<React.ComponentType | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
+  const missingExportCopy = copy.missingExport;
   useEffect(() => {
     setComponent(null);
     setError(null);
@@ -32,7 +33,7 @@ export function RemotePreview({ moduleName, loader, config, copy }: Props) {
         if (typeof resolved === "function") {
           setComponent(() => resolved as React.ComponentType);
         } else {
-          setError(new Error(copy.missingExport));
+          setError(new Error(missingExportCopy));
         }
       })
       .catch((err) => {
@@ -42,7 +43,7 @@ export function RemotePreview({ moduleName, loader, config, copy }: Props) {
     return () => {
       active = false;
     };
-  }, [memoizedLoader, moduleName]);
+  }, [memoizedLoader, moduleName, missingExportCopy]);
   if (loading) {
     return (
       <div className="grid h-64 place-items-center rounded-2xl border border-white/10 bg-white/5">
