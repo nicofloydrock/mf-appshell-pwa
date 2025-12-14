@@ -1,3 +1,4 @@
+// Tarjeta guía con lista de bullets configurables desde contenido.
 type Props = {
   title: string;
   items: string[];

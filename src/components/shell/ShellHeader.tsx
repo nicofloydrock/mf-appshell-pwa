@@ -1,3 +1,4 @@
+// Header del host: branding, estado de federación y toggle de menú.
 type Props = {
   onToggleMenu: () => void;
   menuOpen: boolean;

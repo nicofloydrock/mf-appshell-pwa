@@ -1,3 +1,4 @@
+// Config global que se pasa a remotos: usuario/tokens dummy, auth simulado y helper de notify.
 import { buildAuthContext } from "./authConfig";
 
 export class AppConfig {

@@ -1,3 +1,4 @@
+// Layout principal: hero + preview remoto + guía lateral, parametrizado por copys/config.
 import type { Microfront } from "../../types/microfront";
 import { RemotePreview } from "./RemotePreview";
 import { ShellHero } from "./ShellHero";

@@ -1,3 +1,4 @@
+// Sección hero del shell: muestra microfront activo y acciones rápidas (PWA refresh, notify).
 import type { Microfront } from "../../types/microfront";
 
 type Props = {

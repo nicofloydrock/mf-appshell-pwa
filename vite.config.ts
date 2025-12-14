@@ -1,3 +1,4 @@
+// Configuración Vite del AppShell: React, Module Federation, PWA e HMR sync entre remotos.
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";

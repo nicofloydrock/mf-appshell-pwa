@@ -1,3 +1,4 @@
+// Helpers para normalizar URLs/remotos y exponerlas tipadas al host.
 type RemoteConfig = {
   catalog: string;
   agente: string;

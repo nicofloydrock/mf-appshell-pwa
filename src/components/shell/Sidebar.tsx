@@ -1,3 +1,4 @@
+// Listado de microfronts navegable; resalta el activo y muestra metadatos básicos.
 import type { Microfront } from "../../types/microfront";
 
 type Props = {

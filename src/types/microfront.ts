@@ -1,3 +1,4 @@
+// Tipado base para microfronts federados y sus claves.
 export type RemoteKey = "catalog" | "agente" | "nfc" | "notificaciones";
 
 export type Microfront = {

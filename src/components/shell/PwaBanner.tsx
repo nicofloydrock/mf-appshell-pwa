@@ -1,3 +1,4 @@
+// Banner flotante de PWA: comunica offline/updates y permite refrescar o descartar.
 import type { PwaStatus } from "../../hooks/usePwaUpdate";
 
 type Props = {

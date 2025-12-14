@@ -1,3 +1,4 @@
+// Configura Module Federation para el host: remotos dinámicos con paths separados dev/prod.
 import type { PluginOption } from "vite";
 import federation from "@originjs/vite-plugin-federation";
 

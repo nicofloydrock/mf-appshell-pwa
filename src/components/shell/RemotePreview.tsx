@@ -1,3 +1,4 @@
+// Contenedor que carga el módulo federado en runtime y lo monta con la config del host.
 import { useEffect, useMemo, useState } from "react";
 type Props = {
   moduleName: string;
@@ -23,6 +24,7 @@ export function RemotePreview({ moduleName, loader, config, copy }: Props) {
     memoizedLoader()
       .then((mod) => {
         if (!active) return;
+        // Intenta resolver el componente expuesto (default, nombre o primer export).
         const resolved =
           (mod as Record<string, unknown>)?.default ||
           (mod as Record<string, unknown>)?.[moduleName] ||

@@ -1,3 +1,4 @@
+// Service Worker injectManifest: precache, cleanup, skipWaiting y manejo de notificaciones/push del host.
 /// <reference lib="webworker" />
 // eslint-disable-next-line no-restricted-globals
 import { clientsClaim } from "workbox-core";

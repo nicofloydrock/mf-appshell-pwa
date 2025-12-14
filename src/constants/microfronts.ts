@@ -1,3 +1,4 @@
+// Define loaders dinámicos para remotos y carga catálogo de microfronts desde JSON.
 import microfrontContent from "../content/microfronts.json";
 import type { Microfront, RemoteKey } from "../types/microfront";
 

@@ -1,3 +1,4 @@
+// Shape del contexto de autenticación/roles que se propaga a los microfronts (dummy/local).
 export type AuthContext = {
   provider: string;
   tokenType: string;

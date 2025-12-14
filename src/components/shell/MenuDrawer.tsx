@@ -1,3 +1,4 @@
+// Drawer de menú responsive: muestra el listado de microfronts en overlay y notifica selección.
 import { Sidebar } from "./Sidebar";
 import type { Microfront } from "../../types/microfront";
 

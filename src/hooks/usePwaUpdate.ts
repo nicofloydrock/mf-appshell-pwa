@@ -1,3 +1,4 @@
+// Hook que gestiona registro del SW, estado offline/update y refresco forzado con cache-bust.
 import { useEffect, useRef, useState } from "react";
 import { registerSW } from "virtual:pwa-register";
 
@@ -20,6 +21,7 @@ export function usePwaUpdate() {
     updaterRef.current = updateSW;
   }, []);
 
+  // Fuerza skipWaiting + bust de caché para tomar la versión más reciente del shell.
   const refresh = async () => {
     setStatus("update");
     setVersion(Date.now());

@@ -1,3 +1,4 @@
+// Entrada del AppShell: orquesta la UI del host, monta remotos vía Module Federation y propaga config/auth dummy.
 import { useState } from "react";
 import { usePwaUpdate } from "./hooks/usePwaUpdate";
 import { ShellHeader } from "./components/shell/ShellHeader";

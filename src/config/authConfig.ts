@@ -1,6 +1,8 @@
+// Construye un contexto de auth/roles dummy simulando providers tipo Auth0/MSAL.
 import type { AuthContext } from "../types/auth";
 
 export function buildAuthContext(token: string, user: { id: string; name: string }): AuthContext {
+  // Simula expiración, scopes y permisos por microfront para pruebas locales.
   const now = Date.now();
   return {
     provider: "auth0-demo",

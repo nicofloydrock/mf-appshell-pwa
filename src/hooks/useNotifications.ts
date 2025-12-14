@@ -1,3 +1,4 @@
+// Hook ligero para pedir permisos y enviar notificaciones vía Service Worker.
 export function useNotifications() {
   const requestPermission = async () => {
     if (!("Notification" in window)) return false;
